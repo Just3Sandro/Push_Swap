@@ -22,7 +22,9 @@ t_stack	*fill_stack_a(t_stack *stack_a, int argc, char **argv)
 	n = 0;
 	while (n < argc - 1)
 	{
+		//parcours le tableau, transforme les argv en long et le rempli dans newlst
 		node = ft_newlst(i, ft_atol(argv[i]));
+		//on remets tous dans stack_a et on le return
 		ft_addlst_back(&stack_a, node);
 		n++;
 		i++;
@@ -38,9 +40,13 @@ void	push_swap(int argc, char **argv)
 
 	stack_a = NULL;
 	stack_b = NULL;
+	// remplis stack_a avec la function
 	stack_a = fill_stack_a(stack_a, argc, argv);
+	//calcul le nombre delement grace à la function
 	elements = ft_numelements(&stack_a);
+	//
 	ft_put_index(&stack_a);
+	//check si c'est trier, sinon combien il y à d'élément pour calculer plus ou moins vite
 	if (!ft_issorted(stack_a) && (elements == 2 || elements == 3))
 		sort_small(&stack_a, elements);
 	else if (!ft_issorted(stack_a) && elements <= 5)
